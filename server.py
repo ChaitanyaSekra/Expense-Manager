@@ -10,7 +10,7 @@ import calendar
 
 app = Flask(__name__, static_folder=".")
 CORS(app)
-DB_PATH = "budget.db"
+DB_PATH = "/data/budget.db"
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
