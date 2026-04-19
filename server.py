@@ -7,6 +7,7 @@ from flask_cors import CORS
 import sqlite3, os, io
 from datetime import datetime, date
 import calendar
+from flask import abort
 
 app = Flask(__name__, static_folder=".")
 CORS(app)
@@ -55,6 +56,8 @@ def index():
 
 @app.route("/<path:path>")
 def static_files(path):
+    if path.startswith("api/"):
+        abort(404)  # DON'T serve HTML for API routes
     return send_from_directory(".", path)
 
 @app.route("/api/users", methods=["GET"])
