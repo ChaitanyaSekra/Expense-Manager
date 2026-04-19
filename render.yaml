@@ -8,6 +8,8 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: DB_PATH
+        value: /data/budget.db
     disk:
       name: sqlite-data
       mountPath: /data
