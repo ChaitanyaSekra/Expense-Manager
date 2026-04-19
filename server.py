@@ -11,7 +11,7 @@ from flask import abort
 
 app = Flask(__name__, static_folder=".")
 CORS(app)
-DB_PATH = "/data/budget.db"
+DB_PATH = os.environ.get("DB_PATH", "/data/budget.db")
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
