@@ -102,6 +102,17 @@ def login_user():
         return jsonify({"error": "Incorrect PIN"}), 401
     return jsonify({"id": user["id"], "name": user["name"]})
 
+@app.route("/api/health")
+def health():
+    import os
+    return jsonify({
+        "db_path": DB_PATH,
+        "db_exists": os.path.exists(DB_PATH),
+        "data_dir_exists": os.path.exists("/data"),
+        "data_dir_writable": os.access("/data", os.W_OK)
+    })
+
+
 @app.route("/api/expenses/<int:user_id>", methods=["GET"])
 def get_expenses(user_id):
     conn = get_db()
